@@ -52,7 +52,20 @@ int main() {  // Pasted in the Linked List code and methods below from Lab 17 co
         // 50% chance to add new customers
         for (int c = 0; c < CUSTOMERS_PER_ROUND; c++) {
             if (rand() % 2 == 0) { // 50% chance
-    
+                string custName = names[rand() % names.size()];
+                string custOrder = coffeeOrders[rand() % coffeeOrders.size()];
+                addFront(head, custName, custOrder);
+                cout << "New customer added: " << custName << " ordering " << custOrder << endl;
+            }
+        }
+
+        // Serve the customer at the head of the queue (if queue is not empty)
+        if (head != nullptr) {
+            cout << "Serving: " << head->name << " (Order: " << head->order << ")" << endl;
+            deletecustomerNode(head, 1);
+        } else {
+            cout << "Queue is empty. No customer to serve." << endl;
+        }
 
         // Display current queue
         cout << "Current Queue:\n";
@@ -157,7 +170,7 @@ bool deletecustomerNode(customerNode*&head, int entry) {
     if (entry < 1 || !head) return false; // invalid position or empty list 
     customerNode *current = head;
     customerNode *prev = head;
-    for (int i = 0; i < (entry-1); i++)
+    for (int i = 1; i < (entry-1) && prev; i++)
         if (i == 0)
             current = current->next;
         else {
