@@ -43,6 +43,7 @@ int main() {  // Pasted in the Linked List code and methods below from Lab 17 co
         newcustomerNode->next = head;
         head = newcustomerNode;
     }
+    
     output(head);
 
     // // adding a customerNode to the tail of the list
