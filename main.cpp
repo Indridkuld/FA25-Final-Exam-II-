@@ -19,10 +19,10 @@ struct customerNode{
 };
 
 void output(customerNode*);
-void addFront(customerNode*&head, string name);
-void addTail(customerNode*&head, string name);
-bool deletecustomerNode(customerNode*&head, int position); 
-bool insertcustomerNode(customerNode*&head, int position, string name);
+void addFront(customerNode*&head, string name, string order);
+void addTail(customerNode*&head, string name, string order);
+bool deletecustomerNode(customerNode*&head, int position);
+bool insertcustomerNode(customerNode*&head, int position, string name, string order);
 void deleteList(customerNode*&head);
 
 int main() {  // Pasted in the Linked List code and methods below from Lab 17 code. 
@@ -33,18 +33,32 @@ int main() {  // Pasted in the Linked List code and methods below from Lab 17 co
     array<string, 10> names = {"Alice", "Bob", "Charlie", "Diana", "Eve", "Frank", "Grace", "Henry", "Iris", "Jack"};
     array<string, 5> coffeeOrders = {"Latte", "Cappuccino", "Espresso", "Americano", "Macchiato"};
 
-    // Create a linked list of customersd
+    const int ROUNDS = 10; 
+    const int CUSTOMERS_PER_ROUND = 3; 
     customerNode*head = nullptr;
     int count = 0;
     int entry;
     // create a linked list of size of customers with data from arrays 
+
     for (int i = 0; i < names.size(); i++) {
-        customerNode*newcustomerNode = new customerNode(names[i], coffeeOrders[i % coffeeOrders.size()]);
-        newcustomerNode->next = head;
-        head = newcustomerNode;
-    }
+            customerNode*newcustomerNode = new customerNode(names[i], coffeeOrders[i % coffeeOrders.size()]);
+            newcustomerNode->next = head;
+            head = newcustomerNode;
+        }
+
+    for (int round = 0; round < ROUNDS; round++) {
+        cout << "Round " << (round + 1) << ":\n";
+
+        // 50% chance to add new customers
+        for (int c = 0; c < CUSTOMERS_PER_ROUND; c++) {
+            if (rand() % 2 == 0) { // 50% chance
     
-    output(head);
+
+        // Display current queue
+        cout << "Current Queue:\n";
+        output(head);
+
+    }
 
     // // adding a customerNode to the tail of the list
     // float choice;
